@@ -1,0 +1,17 @@
+version: '3.8'
+services:
+    kivy:
+        build: 
+            context: "../../"
+            network: host
+            dockerfile: "./App/KivyApp/buildozer.Dockerfile"
+        image: kivy
+        volumes:
+            - "../../App/KivyApp/.buildozer:/home/user/.buildozer"
+            - "../../:/home/user/hostcwd"
+            - "/dev/bus/usb:/dev/bus/usb"
+        working_dir: "/home/user/hostcwd/App/KivyApp/"
+        privileged: true
+        entrypoint: "/bin/bash"
+        stdin_open: true
+        tty: true
